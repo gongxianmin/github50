@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .box {
+      display: flex;
+      width: 80%;
+      margin: 20px auto;
+
+    }
+
+    .box .item {
+      width: 60px;
+      margin-right: 10px;
+      transition: all .3s;
+      border-radius: 30px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .box .item:last-of-type {
+      margin-right: 0;
+    }
+
+    .box .active {
+      flex: 1;
+    }
+
+    .box img {
+      display: block;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="item active"><img src="./1.webp" alt=""></div>
+    <div class="item"><img src="./2.webp" alt=""></div>
+    <div class="item"><img src="./3.webp" alt=""></div>
+    <div class="item"><img src="./4.webp" alt=""></div>
+    <div class="item"><img src="./5.webp" alt=""></div>
+    <div class="item"><img src="./6.webp" alt=""></div>
+  </div>
+
+  <script>
+    const oBox = document.querySelector('.box')
+    const oItemList = oBox.querySelectorAll('.item')
+    Array.from(oItemList).map((item, index, arr) => {
+      item.addEventListener('click', () => {
+        if (!item.classList.contains('active')) {
+          arr.map((v) => {
+            v.classList.remove('active')
+          })
+          item.classList.add('active')
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>
