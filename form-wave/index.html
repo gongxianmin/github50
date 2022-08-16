@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="box">
+    <div class="form">
+      <h3>Please Login</h3>
+      <div class="form-item">
+        <div class="content">
+          <input type="text" class="email">
+          <div class="text-content">
+            <span class="text" style="transition-delay: 0ms">E</span>
+            <span class="text" style="transition-delay: 50ms">m</span>
+            <span class="text" style="transition-delay: 100ms">a</span>
+            <span class="text" style="transition-delay: 150ms">i</span>
+            <span class="text" style="transition-delay: 200ms">l</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="content">
+          <input type="text" class="password">
+          <div class="text-content">
+            <span class="text" style="transition-delay: 0ms;">P</span>
+            <span class="text" style="transition-delay: 50ms;">a</span>
+            <span class="text" style="transition-delay: 100ms;">s</span>
+            <span class="text" style="transition-delay: 150ms;">s</span>
+            <span class="text" style="transition-delay: 200ms;">w</span>
+            <span class="text" style="transition-delay: 250ms;">o</span>
+            <span class="text" style="transition-delay: 300ms;">r</span>
+            <span class="text" style="transition-delay: 350ms;">d</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="login">login</div>
+      </div>
+      <div class="form-item">
+        <div>Don't have an account? <a href="javascript: void;">Register</a></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const oForm = document.querySelector('form')
+    const oEmail = document.querySelector('.email')
+    const oPassword = document.querySelector('.password')
+    oEmail.addEventListener('focus', () => {
+      toggle(oEmail, 1, 'active')
+    })
+    oEmail.addEventListener('blur', (e) => {
+      if (e.target.value.length === 0) {
+        toggle(oEmail, 0, 'active')
+      }
+    })
+    oPassword.addEventListener('focus', () => {
+      toggle(oPassword, 1, 'active')
+    })
+    oPassword.addEventListener('blur', (e) => {
+      if (e.target.value.length === 0) {
+        toggle(oPassword, 0, 'active')
+      }
+    })
+    function toggle(el, addOrRemove, className) {
+      const list = el.nextElementSibling.querySelectorAll('.text')
+      if (addOrRemove === 1) {
+        list.forEach((item) => {
+          item.classList.add('active')
+        })
+        // el.nextElementSibling.classList.add(className)
+      } else {
+        list.forEach((item) => {
+          item.classList.remove('active')
+        })
+      }
+    }
+  </script>
+</body>
+
+</html>
