@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .app {
+      display: flex;
+      height: 100%;
+    }
+
+    .item {
+      display: flex;
+      flex-grow: 1;
+      flex-basis: 300px;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: all 1s;
+    }
+
+    .item:first-of-type {
+      background-image: url('./3.webp');
+    }
+
+    .item:last-of-type {
+      background-image: url('./4.webp');
+    }
+
+    .item.active {
+      flex-grow: 0;
+    }
+
+    .item .content h3 {
+      font-size: 50px;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .item .content .btn {
+      font-size: 20px;
+      border: 3px solid #fff;
+      width: 200px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      cursor: pointer;
+      color: #fff;
+      transition: all .2s;
+    }
+
+    .item .content .btn:hover {
+      background: blueviolet;
+      border-color: blueviolet;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="item left">
+      <div class="content">
+        <h3>left content</h3>
+        <div class="btn">click</div>
+      </div>
+    </div>
+    <div class="item right">
+      <div class="content">
+        <h3>right content</h3>
+        <div class="btn">click</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const oApp = document.querySelector('.app')
+    const oItemList = document.querySelectorAll('.item')
+    const oLeft = oApp.querySelector('.left')
+    const oRight = oApp.querySelector('.right')
+    oLeft.addEventListener('mouseenter', () => {
+      toggle(oLeft, oRight)
+    }, false)
+    oRight.addEventListener('mouseenter', () => {
+      toggle(oRight, oLeft)
+    }, false)
+    function toggle(left, right) {
+      left.classList.remove('active')
+      right.classList.add('active')
+    }
+    document.body.addEventListener('mouseleave', () => {
+      oLeft.classList.remove('active')
+      oRight.classList.remove('active')
+    })
+  </script>
+</body>
+
+</html>

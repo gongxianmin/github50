@@ -87,8 +87,8 @@
       if (isLock) return
       isLock = true
       requestAnimationFrame(() => {
-        isLock = false
         isInClient(oItemList, height)
+        isLock = false
       })
     }
     function isInClient(list, height) {
