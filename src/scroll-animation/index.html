@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scroll-animation</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .app {
+      height: 100%;
+      overflow-x: hidden;
+      background-color: #efedd6;
+      padding-bottom: 20px;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .app .item {
+      width: 400px;
+      height: 240px;
+      border-radius: 10px;
+      background: #ccc;
+      box-shadow: 2px 2px 5px #999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      transform: translate3d(-50%, 0, 0);
+      margin-top: 20px;
+      transition: all .4s;
+    }
+
+    .app .left {
+      margin-left: -3000px;
+    }
+
+    .app .right {
+      margin-left: 3000px;
+    }
+
+    .app .item.active {
+      margin-left: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h3>scroll animation</h3>
+    <div class="item right">content</div>
+    <div class="item left">content</div>
+    <div class="item right">content</div>
+    <div class="item left">content</div>
+    <div class="item right">content</div>
+    <div class="item left">content</div>
+    <div class="item right">content</div>
+    <div class="item left">content</div>
+    <div class="item right">content</div>
+    <div class="item left">content</div>
+  </div>
+  <script>
+    const oApp = document.querySelector('.app')
+    const oItemList = oApp.querySelectorAll('.item')
+    const height = document.documentElement.clientHeight
+    isInClient(oItemList, height)
+    oApp.addEventListener('scroll', handleScroll, false)
+    let isLock = false
+    function handleScroll(e) {
+      if (isLock) return
+      isLock = true
+      requestAnimationFrame(() => {
+        isLock = false
+        isInClient(oItemList, height)
+      })
+    }
+    function isInClient(list, height) {
+      const { top } = list[0].getBoundingClientRect()
+      list.forEach((item) => {
+        const { top } = item.getBoundingClientRect()
+        if (top < height && top > -200) {
+          item.classList.add('active')
+        } else {
+          item.classList.remove('active')
+        }
+      })
+    }
+  </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>
