@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>filter-load</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    .app {
+      height: 100%;
+      filter: blur(100px);
+      position: relative;
+    }
+
+    .app img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .loading-text {
+      width: 40px;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      color: #fff;
+      text-align: center;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <img src="./4.webp" alt="">
+  </div>
+  <div class="loading-text">0%</div>
+  <script>
+    const oApp = document.querySelector('.app')
+    const oText = document.querySelector('.loading-text')
+    let loaded = 0
+    let animate = null
+    load()
+    function load() {
+      loaded++
+      if (loaded > 100) {
+        cancelAnimationFrame(animate)
+        return
+      }
+      oApp.style.filter = `blur(${100 - loaded}px)`
+      oText.innerText = loaded + '%'
+      oText.style.opacity = (100 - loaded) / 100
+      animate = requestAnimationFrame(() => {
+        setTimeout(() => {
+          load()
+        }, 20)
+      })
+    }
+  </script>
+</body>
+
+</html>
