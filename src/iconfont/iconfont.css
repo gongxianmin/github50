@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 246948 */
+  src: url('iconfont.woff2?t=1660608702829') format('woff2'),
+       url('iconfont.woff?t=1660608702829') format('woff'),
+       url('iconfont.ttf?t=1660608702829') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jilu:before {
+  content: "\e605";
+}
+
+.icon-baobiao:before {
+  content: "\e607";
+}
+
+.icon-sousuo:before {
+  content: "\e608";
+}
+
+.icon-shezhi01:before {
+  content: "\e609";
+}
+
+.icon-liebiao:before {
+  content: "\e60a";
+}
+
+.icon-yonghu:before {
+  content: "\e60b";
+}
+
+.icon-msg:before {
+  content: "\e60c";
+}
+
+.icon-you-01:before {
+  content: "\e60d";
+}
+
+.icon-zuo-01:before {
+  content: "\e60f";
+}
+
+.icon-username:before {
+  content: "\e622";
+}
+
+.icon-phone_android:before {
+  content: "\e663";
+}
+
+.icon-password:before {
+  content: "\e606";
+}
+
+.icon-jian:before {
+  content: "\e60e";
+}
+
+.icon-jia:before {
+  content: "\e603";
+}
+
