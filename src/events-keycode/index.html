@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: #409EFF;
+    }
+
+    .container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+    }
+
+    .common {
+      display: inline-flex;
+      background: #CDD0D6;
+      padding: 10px 20px;
+      border: 1px solid #000;
+      min-width: 150px;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .key-code {
+      text-align: center;
+      margin-left: 20px;
+    }
+
+    .key-code .top {
+      font-size: 14px;
+      opacity: .6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="tips common">Press any key to get the keyCode</div>
+    <!-- <div class="key-code">
+      <div class="top">123</div>
+      <div class="bottom common">456</div>
+    </div>
+    <div class="key-code">
+      <div class="top">123</div>
+      <div class="bottom common">456</div>
+    </div>
+    <div class="key-code">
+      <div class="top">123</div>
+      <div class="bottom common">456</div>
+    </div> -->
+  </div>
+  <script>
+    const oContainer = document.querySelector('.container')
+    const oTips = document.querySelector('.tips')
+    document.addEventListener('keydown', handleKeyPress, false)
+    function handleKeyPress(e) {
+      oTips.remove()
+      console.log(e)
+      const { key, keyCode, code } = e
+      const html = createKeyCodeItem('event.key', key === ' ' ? 'Space' : key) +
+        createKeyCodeItem('event.keyCode', keyCode) +
+        createKeyCodeItem('event.code', code)
+      oContainer.innerHTML = html
+    }
+    function createKeyCodeItem(type, value) {
+      const str = `
+        <div class="key-code">
+          <div class="top">${type}</div>
+          <div class="common">${value}</div>
+        </div>
+      `
+      return str
+    }
+  </script>
+</body>
+
+</html>
