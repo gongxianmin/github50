@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>drink water</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --border-color: #144fc6;
+      --fill-color: #409eff;
+    }
+
+    html,
+    body {
+      height: 100%;
+      line-height: 1;
+    }
+
+    body {
+      background-color: var(--fill-color);
+      margin: 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 30px;
+    }
+
+    .sub-title {
+      font-weight: normal;
+    }
+
+    .cup {
+      width: 150px;
+      height: 330px;
+      display: flex;
+      flex-direction: column;
+      /* border-color: var(--border-color); */
+      border: 4px solid var(--border-color);
+      border-radius: 0 0 30px 30px;
+      overflow: hidden;
+      margin: 0 auto;
+      background-color: #fff;
+      color: var(--fill-color);
+    }
+
+    .tips {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .remain {
+      height: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .liters {
+      font-size: 18px;
+      line-height: 1;
+      font-weight: bold;
+    }
+
+    .percent {
+      height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--fill-color);
+      color: #fff;
+      font-size: 18px;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+
+    .cups {
+      display: flex;
+      flex-wrap: wrap;
+      width: 250px;
+      margin: 0 auto;
+    }
+
+    .cup-small {
+      height: 100px;
+      width: 50px;
+      border-radius: 0 0 15px 15px;
+      cursor: pointer;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s;
+    }
+
+    .cup-full {
+      background: var(--fill-color);
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title">Drink Water</h1>
+  <h3 class="sub-title">Goal: 2 Liters</h3>
+  <div class="cup">
+    <div class="remain">
+      <span class="liters">2L</span>
+      <span>remained</span>
+    </div>
+    <div class="percent"></div>
+  </div>
+  <p class="tips">Select how many glasses of water that you have drank</p>
+  <div class="cups">
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+    <div class="cup cup-small"><span>250</span><span>ml</span></div>
+  </div>
+  <script>
+    const oLiters = document.querySelector(".liters")
+    const oCups = document.querySelector(".cups")
+    const oCupList = oCups.querySelectorAll(".cup")
+    const oRemain = document.querySelector(".remain")
+    const oPercent = document.querySelector(".percent")
+
+    const { height: cupHeight } = document.querySelector('.cup').getBoundingClientRect()
+    oCupList.forEach((item, index) => {
+      item.addEventListener('click', handleClick.bind(this, item, index), false)
+    })
+    function handleClick(item, index) {
+      if (item.classList.contains('cup-full')) {
+        const oCupFullList = oCups.querySelectorAll('.cup-full')
+        const len = oCupFullList.length
+        if (index + 1 < len) {
+          for (let i = index + 1; i < len; i++) {
+            oCupFullList[i].classList.remove('cup-full')
+          }
+          const percent = (index + 1) / 8
+          run(percent)
+        } else {
+          oCupFullList[index].classList.remove('cup-full')
+          const percent = (index) / 8
+          run(percent)
+        }
+      } else {
+        for (let i = 0; i < index + 1; i++) {
+          oCupList[i].classList.add('cup-full')
+        }
+        const percent = (index + 1) / 8
+        run(percent)
+      }
+    }
+    function setHeight(el, height) {
+      el.style.height = height + 'px'
+    }
+    function run(percent) {
+      oLiters.innerHTML = 2 * (1 - percent) + 'L'
+      oPercent.innerHTML = percent * 100 + '%'
+      setHeight(oPercent, cupHeight * percent)
+      setHeight(oRemain, cupHeight * (1 - percent))
+    }
+  </script>
+</body>
+
+</html>
